@@ -6,6 +6,19 @@
     <title>Astrostatistics Transcribed Notes - Charlotte</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         .notes-content {
@@ -103,7 +116,7 @@
         });
 
         // Fetch and display the markdown content
-        fetch('notes/astrostatistics/Astrostatistics-scan-2025.md')
+        fetch('notes/astrostatistics/Astrostatistics-scan-2025-cleaned.md')
             .then(response => response.text())
             .then(text => {
                 document.querySelector('.loading').style.display = 'none';
@@ -112,7 +125,7 @@
 
                 // Trigger MathJax to render LaTeX
                 if (window.MathJax) {
-                    MathJax.typesetPromise();
+                    MathJax.typesetPromise([document.getElementById('content')]);
                 }
             })
             .catch(error => {
