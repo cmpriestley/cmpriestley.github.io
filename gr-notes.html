@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Relativity Transcribed Notes - Charlotte</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .notes-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            line-height: 1.6;
+        }
+        .notes-content h1, .notes-content h2, .notes-content h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .notes-content h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        .notes-content code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .notes-content pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .notes-content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+            margin-left: 0;
+            color: #666;
+            font-style: italic;
+        }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .download-link {
+            float: right;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .download-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Charlotte</h1>
+            <ul>
+                <li><a href="index.html">About</a></li>
+                <li><a href="notes.html">Lecture Notes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="notes-content">
+            <a href="notes.html" class="back-link">← Back to Notes</a>
+            <a href="notes/general-relativity/GR notes 2025.pdf" class="download-link" target="_blank">View PDF Version →</a>
+            <div class="loading">Loading transcribed notes...</div>
+            <div id="content"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Charlotte. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Configure marked options
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+
+        // Fetch and display the markdown content
+        fetch('notes/general-relativity/GR-notes-2025-complete.md')
+            .then(response => response.text())
+            .then(text => {
+                document.querySelector('.loading').style.display = 'none';
+                const htmlContent = marked.parse(text);
+                document.getElementById('content').innerHTML = htmlContent;
+
+                // Trigger MathJax to render LaTeX
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+            })
+            .catch(error => {
+                document.querySelector('.loading').textContent = 'Error loading notes. Please try again later.';
+                console.error('Error loading markdown:', error);
+            });
+    </script>
+</body>
+</html>
