@@ -109,10 +109,58 @@
     </footer>
 
     <script>
-        // Configure marked options
+        // Configure marked options and add LaTeX protection
         marked.setOptions({
             breaks: true,
-            gfm: true
+            gfm: true,
+            smartypants: false
+        });
+
+        // Add custom extensions to protect math from markdown processing
+        marked.use({
+            extensions: [{
+                name: 'inlineMath',
+                level: 'inline',
+                start(src) {
+                    const index = src.indexOf('$');
+                    return index >= 0 ? index : undefined;
+                },
+                tokenizer(src) {
+                    // Match inline math: $...$ (but not $$)
+                    const match = /^\$(?!\$)([^\$\n]+?)\$/.exec(src);
+                    if (match) {
+                        return {
+                            type: 'inlineMath',
+                            raw: match[0],
+                            text: match[1]
+                        };
+                    }
+                },
+                renderer(token) {
+                    return `$${token.text}$`;
+                }
+            }, {
+                name: 'displayMath',
+                level: 'block',
+                start(src) {
+                    const index = src.indexOf('$$');
+                    return index >= 0 ? index : undefined;
+                },
+                tokenizer(src) {
+                    // Match display math: $$...$$
+                    const match = /^\$\$\n?([\s\S]+?)\n?\$\$/.exec(src);
+                    if (match) {
+                        return {
+                            type: 'displayMath',
+                            raw: match[0],
+                            text: match[1]
+                        };
+                    }
+                },
+                renderer(token) {
+                    return `<p>$$${token.text}$$</p>`;
+                }
+            }]
         });
 
         // Fetch and display the markdown content
