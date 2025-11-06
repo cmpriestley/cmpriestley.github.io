@@ -324,7 +324,7 @@ $\begin{pmatrix} X_1 \\ X_2 \end{pmatrix} \sim N\left( \begin{pmatrix} \mu \\ \m
 May $P(X_1) = \int P(X_1, X_2) dX_2 = N(X_1|\mu, \sigma^2)$, $P(X_2) = N(X_2|\mu, \sigma^2)$
 $X_1, X_2$ identically distributed but not independent (or as last lecture. $P(X_2|X_1) \ne P(X_2)$).
 $$ \mathrm{Cov}(X_1, X_2) = \rho \ne 0 $$
-$$ \sqrt{\mathrm{Var}(X_1)}\sqrt{\mathrm{Var}(X_2)}} = \rho \ne 0 $$
+$$ \sqrt{\mathrm{Var}(X_1)}\sqrt{\mathrm{Var}(X_2)} = \rho \ne 0 $$
 > show not independent: `p(x1,x2) != p(x1)p(x2)` or showing `ρ != 0` (equivalently cov != 0)
 
 ---
