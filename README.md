@@ -12,12 +12,8 @@ This is my personal website hosted on GitHub Pages.
 - `notes/` - Folder containing PDF lecture notes organized by course
   - `general-relativity/` - General Relativity course notes (PDF)
   - `astrostatistics/` - Astrostatistics course notes (PDF)
-
-## Features
-
-- Dark theme with black background
-- Profile picture placeholder with rounded corners
-- Handwritten notes with Gemini-transcribed versions using MCP Handley Lab Toolkit
+  - `cosmology/` - Cosmology course notes (PDF)
+  - `quantum-field-theory/` - QFT course notes (PDF)
 
 ## Adding New Lecture Notes
 
